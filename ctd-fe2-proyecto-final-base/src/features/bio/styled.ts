@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import { NombresSimpsons } from "./constants";
 
 export const BioContainer = styled.div`
   display: flex;
@@ -10,7 +9,7 @@ export const BioContainer = styled.div`
   height: 100%;
 `;
 
-export const ContenedorBotones = styled.div`
+export const ContainerButtons = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -19,18 +18,18 @@ export const ContenedorBotones = styled.div`
   margin-bottom: 1rem;
 `;
 
-export const BioImagen = styled.img`
+export const BioImg = styled.img`
   max-width: 200px;
   max-height: 300px;
   margin-bottom: 1rem;
 `;
 
-export const BioNombre = styled.h3`
+export const BioName = styled.h3`
   font-size: 2em;
   margin-bottom: 1rem;
 `;
 
-export const BioDescripcion = styled.p`
+export const BioDescription = styled.p`
   font-size: 1.3em;
   width: 70%;
   margin: 1rem auto;
@@ -53,4 +52,11 @@ export const BioButton = styled.button<{ isActive: boolean }>`
   &:hover {
     cursor: pointer;
   }
+/*   ${(props)=>
+  props.isActive &&
+css`
+  background-color: "#fdd835";
+  color: "whitesmoke";
+  text-shadow: "2px 2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000, -2px -2px 0 #000000, 2px 0px 0 #000000, 0px 2px 0 #000000,-2px 0px 0 #000000, 0px -2px 0 #000000";
+`} */
 `;

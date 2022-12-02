@@ -1,24 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "../../app/store";
-import { ESTADO_FETCH } from "./constants";
-import { obtenerCita } from "./citaAPI";
-import { ICita } from "./types";
+import { FETCH_STATE } from "./constants";
+import { getQuote } from "./quoteAPI";
+import { IQuote } from "./types";
 
 export interface EstadoCita {
-  data: ICita | null;
-  estado: ESTADO_FETCH;
+  data: IQuote | null;
+  estado: FETCH_STATE;
 }
 
 const initialState: EstadoCita = {
   data: null,
-  estado: ESTADO_FETCH.INACTIVO,
+  estado: FETCH_STATE.INACTIVE,
 };
 
 export const obtenerCitaAsync = createAsyncThunk(
   "cita/obtenerCita",
   async (personaje: string) => {
     try {
-      const cita = await obtenerCita(personaje);
+      const cita = await getQuote(personaje);
 
       return cita;
     } catch (err) {
@@ -27,7 +27,7 @@ export const obtenerCitaAsync = createAsyncThunk(
   }
 );
 
-export const citaSlice = createSlice({
+export const quoteSlice = createSlice({
   name: "citas",
   initialState,
   reducers: {
@@ -37,27 +37,27 @@ export const citaSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(obtenerCitaAsync.pending, (state) => {
-        state.estado = ESTADO_FETCH.CARGANDO;
+        state.estado = FETCH_STATE.LOADING;
       })
       .addCase(obtenerCitaAsync.fulfilled, (state, action) => {
-        state.estado = ESTADO_FETCH.INACTIVO;
+        state.estado = FETCH_STATE.INACTIVE;
         state.data = action.payload;
       })
       .addCase(obtenerCitaAsync.rejected, (state) => {
-        state.estado = ESTADO_FETCH.ERROR;
+        state.estado = FETCH_STATE.ERROR;
       });
   },
 });
 
-export const { limpiar } = citaSlice.actions;
+export const { limpiar } = quoteSlice.actions;
 
 export const obtenerCitaDeLaAPI =
-  (personaje: string) => (dispatch: AppDispatch) => {
+  (character: string) => (dispatch: AppDispatch) => {
     dispatch(limpiar());
-    dispatch(obtenerCitaAsync(personaje));
+    dispatch(obtenerCitaAsync(character));
   };
 
-export const obtenerCitaDelEstado = (state: RootState) => state.cita.data;
-export const obtenerEstadoDelPedido = (state: RootState) => state.cita.estado;
+export const getQuoteFromState = (state: RootState) => state.cita.data;
+export const getStateFromRequest = (state: RootState) => state.cita.estado;
 
-export default citaSlice.reducer;
+export default quoteSlice.reducer;
