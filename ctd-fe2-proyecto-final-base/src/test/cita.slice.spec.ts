@@ -1,11 +1,11 @@
-import citaReducer, { EstadoCita, limpiar } from "../features/quote/quoteSlice"
+import citaReducer, { EstadoCita, clear } from "../features/quote/quoteSlice"
 import { screen } from "@testing-library/react";
 import { FETCH_STATE } from "../features/quote/constants"
 
 describe("Reducer", ()=>{
     const initialState: EstadoCita = {
         data: null,
-        estado: FETCH_STATE.INACTIVE,
+        state: FETCH_STATE.INACTIVE,
     }
 
     describe("as defautl", ()=>{
@@ -17,7 +17,7 @@ describe("Reducer", ()=>{
 
     describe("limpiar", ()=>{
         it("debería devolver el estado inicial", ()=>{
-            const actual = citaReducer(initialState,limpiar())
+            const actual = citaReducer(initialState,clear())
             expect(actual).toEqual(initialState)
         })
     })

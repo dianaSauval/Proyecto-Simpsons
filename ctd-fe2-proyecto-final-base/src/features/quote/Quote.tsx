@@ -4,9 +4,9 @@ import { Button, Input, AuthorQuote, ContainerQuote, TextQuote } from "./styled"
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import {
   getQuoteFromState,
-  limpiar,
+  clear,
   getStateFromRequest,
-  obtenerCitaDeLaAPI,
+  getAPIQuote,
 } from "./quoteSlice";
 import { getMessage } from "./utils";
 
@@ -18,10 +18,10 @@ function Quote() {
 
   const dispatch = useAppDispatch();
 
-  const onClickGetQuote = () => dispatch(obtenerCitaDeLaAPI(InputValue));
+  const onClickGetQuote = () => dispatch(getAPIQuote(InputValue));
 
   const onClickDelete = () => {
-    dispatch(limpiar());
+    dispatch(clear());
     setInputValue("");
   };
 

@@ -6,21 +6,21 @@ import { IQuote } from "./types";
 
 export interface EstadoCita {
   data: IQuote | null;
-  estado: FETCH_STATE;
+  state: FETCH_STATE;
 }
 
 const initialState: EstadoCita = {
   data: null,
-  estado: FETCH_STATE.INACTIVE,
+  state: FETCH_STATE.INACTIVE,
 };
 
-export const obtenerCitaAsync = createAsyncThunk(
+export const getQuoteAsync = createAsyncThunk(
   "cita/obtenerCita",
-  async (personaje: string) => {
+  async (character: string) => {
     try {
-      const cita = await getQuote(personaje);
+      const quote = await getQuote(character);
 
-      return cita;
+      return quote;
     } catch (err) {
       throw err;
     }
@@ -31,33 +31,33 @@ export const quoteSlice = createSlice({
   name: "citas",
   initialState,
   reducers: {
-    limpiar: () => initialState,
+    clear: () => initialState,
   },
 
   extraReducers: (builder) => {
     builder
-      .addCase(obtenerCitaAsync.pending, (state) => {
-        state.estado = FETCH_STATE.LOADING;
+      .addCase(getQuoteAsync.pending, (state) => {
+        state.state = FETCH_STATE.LOADING;
       })
-      .addCase(obtenerCitaAsync.fulfilled, (state, action) => {
-        state.estado = FETCH_STATE.INACTIVE;
+      .addCase(getQuoteAsync.fulfilled, (state, action) => {
+        state.state = FETCH_STATE.INACTIVE;
         state.data = action.payload;
       })
-      .addCase(obtenerCitaAsync.rejected, (state) => {
-        state.estado = FETCH_STATE.ERROR;
+      .addCase(getQuoteAsync.rejected, (state) => {
+        state.state = FETCH_STATE.ERROR;
       });
   },
 });
 
-export const { limpiar } = quoteSlice.actions;
+export const { clear } = quoteSlice.actions;
 
-export const obtenerCitaDeLaAPI =
+export const getAPIQuote =
   (character: string) => (dispatch: AppDispatch) => {
-    dispatch(limpiar());
-    dispatch(obtenerCitaAsync(character));
+    dispatch(clear());
+    dispatch(getQuoteAsync(character));
   };
 
 export const getQuoteFromState = (state: RootState) => state.cita.data;
-export const getStateFromRequest = (state: RootState) => state.cita.estado;
+export const getStateFromRequest = (state: RootState) => state.cita.state;
 
 export default quoteSlice.reducer;
