@@ -2,20 +2,17 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "../../app/store";
 import { FETCH_STATE } from "./constants";
 import { getQuote } from "./quoteAPI";
-import { IQuote } from "./types";
+import { IQuote, quoteState } from "./types";
 
-export interface EstadoCita {
-  data: IQuote | null;
-  state: FETCH_STATE;
-}
 
-const initialState: EstadoCita = {
+
+const initialState: quoteState = {
   data: null,
   state: FETCH_STATE.INACTIVE,
 };
 
 export const getQuoteAsync = createAsyncThunk(
-  "cita/obtenerCita",
+  "quote/getQuote",
   async (character: string) => {
     try {
       const quote = await getQuote(character);

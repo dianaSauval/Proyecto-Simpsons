@@ -2,26 +2,28 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { API_URL } from "../app/constants";
 import { render } from "../test-utils";
-import  Cita from "../features/quote/Quote";
 import { screen } from "@testing-library/react";
 import { AuthorQuote } from "../features/quote/styled";
 import userEvent from "@testing-library/user-event";
+import Quote from "../features/quote/Quote";
+import { Provider } from 'react-redux';
+import { store } from '../app/store';
 
-const handlers = [
-  rest.get(API_URL, (req, res, ctx) => {
-    const dataNormalizada = [
-      {
-        cita: "I'm sleeping in the bath tub.",
-        personaje: "Marge",
-        imagen: "url...",
-        direccionPersonaje: "dirección 1516",
-      },
-    ];
-    const mockResponse = {Search:dataNormalizada}
-
-    return res(ctx.json(mockResponse))
-  }),
-];
+export const handlers = [
+    rest.get(API_URL, (req, res, ctx) => {
+      const dataNormalized = [
+        {
+          quote: "I'm sleeping in the bath tub.",
+          character: "Marge",
+          image: "url...",
+          characterDirection: "dirección 1516",
+        },
+      ];
+      const mockResponse = {Search:dataNormalized}
+  
+      return res(ctx.json(mockResponse))
+    }),
+  ];
 
 const server = setupServer(...handlers)
 
@@ -31,7 +33,7 @@ afterEach(() => server.resetHandlers)
 
 afterAll(() => server.close)
 
-jest.mock('./Cita', ()=>()=>{
+jest.mock('../features/quote/Quote', ()=>()=>{
     return <div>Cita</div>
 })
 
@@ -45,7 +47,7 @@ describe("Cita", ()=>{
     }) */
     describe("Cita al azar", ()=>{
         it("debería renderizar la información correcta", async()=>{
-            render(<Cita/>)
+            render(<Quote/>)
             expect((await screen.findAllByText("Cita")).length).toBeGreaterThan(0);
         })
     })
