@@ -54,7 +54,7 @@ export const getAPIQuote =
     dispatch(getQuoteAsync(character));
   };
 
-export const getQuoteFromState = (state: RootState) => state.cita.data;
-export const getStateFromRequest = (state: RootState) => state.cita.state;
+export const getQuoteFromState = (state: RootState) => state.quote.data;
+export const getStateFromRequest = (state: RootState) => state.quote.state;
 
 export default quoteSlice.reducer;
