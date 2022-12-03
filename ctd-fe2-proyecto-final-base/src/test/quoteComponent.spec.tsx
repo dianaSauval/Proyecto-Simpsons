@@ -3,20 +3,22 @@ import Quote from "../features/quote/Quote";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-describe("Cita", ()=>{
-    describe("Si quiero una cita aleatoria", ()=>{
-        it("debería mostrarme el botón Obtener cita aleatoria", async()=>{
+describe("Quote", ()=>{
+    describe("If I want a random quote", ()=>{
+        it("should show me the random quote button", async()=>{
             render(<Quote/>)
             expect (screen.getByLabelText("Obtener cita aleatoria")).toBeInTheDocument()
         })
     })
 
-    describe("Si quiero una cita especifica", ()=>{
-        it("debería mostrarme el botón Obtener Cita", async()=>{
+    describe("If I want a specific quote", ()=>{
+        it("should show me the specific quote button", async()=>{
             render(<Quote/>) 
             const inputAutor = screen.getByLabelText("Author Cita")
             await userEvent.type(inputAutor, "Marge")
             expect (screen.getByLabelText("Obtener Cita")).toBeInTheDocument()
         })
     })
+
+    
 })

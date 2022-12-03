@@ -1,5 +1,4 @@
 import quoteReducer, { clear } from "../features/quote/quoteSlice"
-import { screen } from "@testing-library/react";
 import { FETCH_STATE } from "../features/quote/constants"
 import { quoteState } from "../features/quote/types";
 
@@ -10,14 +9,14 @@ describe("Reducer", ()=>{
     }
 
     describe("as defautl", ()=>{
-        it("debería devolver el estado inicial", ()=>{
+        it("should return the initial state", ()=>{
             const actual = quoteReducer(initialState,{type:"any"})
             expect(actual).toEqual(initialState)
         })
     })
 
-    describe("limpiar", ()=>{
-        it("debería devolver el estado inicial", ()=>{
+    describe("clear", ()=>{
+        it("should return the initial state", ()=>{
             const actual = quoteReducer(initialState,clear())
             expect(actual).toEqual(initialState)
         })
