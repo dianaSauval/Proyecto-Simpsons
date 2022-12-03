@@ -7,3 +7,8 @@ export interface INormalizedNews {
     image: string;
     shortDescription?: string;
   }
+
+  export interface SetInformationProps {
+    setModal:(modal: INormalizedNews | null) => void;
+    modal:INormalizedNews
+  }

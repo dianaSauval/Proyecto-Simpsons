@@ -2,7 +2,7 @@ import React from "react";
 import Quote from "./features/quote/Quote";
 import "./App.css";
 import Bio from "./features/bio/Bio";
-import Noticias from "./features/news/News";
+import News from "./features/news/News";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         <Bio />
       </section>
       <section className="App-news">
-        <Noticias />
+        <News />
       </section>
     </div>
   );
