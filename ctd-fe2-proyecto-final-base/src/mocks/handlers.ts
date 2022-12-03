@@ -8,7 +8,7 @@ export const handlers = [
         quote: "I'm sleeping in the bath tub.",
         character: "Marge",
         image: "url...",
-        characterDirection: "dirección 1516",
+        characterDirection: "dirección 1516"
       },
     ];
     const mockResponse = {dataNormalized}

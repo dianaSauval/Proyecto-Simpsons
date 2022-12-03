@@ -1,4 +1,5 @@
 import { rest } from "msw";
+import React from "react";
 import { setupServer } from "msw/node";
 import { API_URL } from "../app/constants";
 import { render } from "../test-utils";
@@ -6,7 +7,6 @@ import { queryByText, screen, waitFor, waitForElementToBeRemoved } from "@testin
 import userEvent from "@testing-library/user-event";
 import Quote from "../features/quote/Quote";
 import { server } from "../mocks/server";
-
 
 
 beforeAll(() => server.listen)
@@ -56,9 +56,12 @@ describe("Quote", ()=>{
             const inputAutor = screen.getByLabelText("Author Cita")
             await userEvent.type(inputAutor, "Marge")
             const button = screen.getByText("Obtener Cita")
-            await userEvent.click(button)
-            const quote = await screen.findByText("Marge")
-            expect(quote).toBeInTheDocument();
+            await userEvent.click(button)   
+            await waitFor(() => {
+                expect(screen.getByText("Marge Simpson")).toBeInTheDocument();
+              },{timeout: 3000});
+            /* const quote = await screen.findByText("Marge")
+            expect(quote).toBeInTheDocument(); */
         })
     })
 
