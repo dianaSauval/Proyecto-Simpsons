@@ -1,19 +1,18 @@
 import { rest } from "msw";
-import React from "react";
-import { setupServer } from "msw/node";
 import { API_URL } from "../app/constants";
 import { render } from "../test-utils";
-import { queryByText, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Quote from "../features/quote/Quote";
 import { server } from "../mocks/server";
+import '@testing-library/jest-dom'
 
 
-beforeAll(() => server.listen)
+beforeAll(() => server.listen())
 
-afterEach(() => server.resetHandlers)
+afterEach(() => server.resetHandlers())
 
-afterAll(() => server.close)
+afterAll(() => server.close())
 
 
 
@@ -31,15 +30,14 @@ describe("Quote", ()=>{
             await userEvent.click(buttonAleatorio)
             expect(screen.getByText("CARGANDO...")).toBeInTheDocument()
         })
-        /* it("should render the correct information", async()=>{
+        it("should render the correct information", async()=>{
             render(<Quote/>)
             const randomButton = screen.getByText("Obtener cita aleatoria")
             userEvent.click(randomButton)
-            expect(screen.queryByText("CARGANDO...")).not.toBeInTheDocument()
-            expect(
-                await screen.findByText("I'm sleeping in the bath tub.")
-              ).toBeInTheDocument();
-        }) */
+            await waitFor(() => {
+                expect(screen.getByText("Marge Simpson")).toBeInTheDocument();
+              });
+        })
     })
     describe("specific quote", ()=>{
         it("should show a loading state", async()=>{
@@ -59,9 +57,7 @@ describe("Quote", ()=>{
             await userEvent.click(button)   
             await waitFor(() => {
                 expect(screen.getByText("Marge Simpson")).toBeInTheDocument();
-              },{timeout: 3000});
-            /* const quote = await screen.findByText("Marge")
-            expect(quote).toBeInTheDocument(); */
+              });
         })
     })
 
