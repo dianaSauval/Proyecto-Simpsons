@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 
 describe("Quote", ()=>{
     describe("random quote button", ()=>{
-        it("should show me the random quote button", async()=>{
+        it("should show me the random quote button", ()=>{
             render(<Quote/>)
             expect (screen.getByLabelText("Obtener cita aleatoria")).toBeInTheDocument()
         })

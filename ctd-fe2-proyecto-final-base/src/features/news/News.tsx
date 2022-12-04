@@ -41,7 +41,6 @@ const News = () => {
     setNews(data);
   };
 
-
   useEffect(() => {
     getInformation();
   }, []);
@@ -59,9 +58,7 @@ const News = () => {
             <ReadButton onClick={() => setModal(n)}>Ver más</ReadButton>
           </CardNews>
         ))}
-        {modal && (
-          <Modal modal={modal} setModal={setModal}/>
-        )}
+        {modal && <Modal modal={modal} setModal={setModal} />}
       </ListNews>
     </ContainerNews>
   );
