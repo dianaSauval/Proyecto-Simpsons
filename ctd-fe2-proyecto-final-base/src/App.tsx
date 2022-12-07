@@ -1,4 +1,3 @@
-import React from "react";
 import Quote from "./features/quote/Quote";
 import "./App.css";
 import Bio from "./features/bio/Bio";

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "../../app/store";
 import { FETCH_STATE } from "./constants";
 import { getQuote } from "./quoteAPI";
-import { IQuote, quoteState } from "./types";
+import { quoteState } from "./types";
 
 
 
@@ -14,13 +14,10 @@ const initialState: quoteState = {
 export const getQuoteAsync = createAsyncThunk(
   "quote/getQuote",
   async (character: string) => {
-    try {
-      const quote = await getQuote(character);
 
-      return quote;
-    } catch (err) {
-      throw err;
-    }
+    const quote = await getQuote(character);
+
+    return quote;
   }
 );
 

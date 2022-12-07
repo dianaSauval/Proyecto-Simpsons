@@ -10,7 +10,7 @@ export interface INews {
 const simulateElapsedTime: (decrementMiliseconds: number) => Date = (
   decrementMiliseconds
 ) => {
-  let time = new Date();
+  const time = new Date();
   time.setMilliseconds(time.getMilliseconds() - decrementMiliseconds);
   return time;
 };
