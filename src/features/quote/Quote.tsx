@@ -36,10 +36,10 @@ function Quote() {
         placeholder="Ingresa el nombre del autor"
       />
       <Button
-        aria-label={InputValue ? "Obtener Cita" : "Obtener cita aleatoria"}
+        aria-label={InputValue ? "Obtener Cita" : "Cita aleatoria"}
         onClick={onClickGetQuote}
       >
-        {InputValue ? "Obtener Cita" : "Obtener cita aleatoria"}
+        {InputValue ? "Obtener Cita" : "Cita aleatoria"}
       </Button>
       <Button aria-label="Borrar" onClick={onClickDelete} secondary={true}>
         Borrar
