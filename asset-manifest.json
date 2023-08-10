@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Proyecto-Simpsons/static/css/main.2db8c97a.css",
-    "main.js": "/Proyecto-Simpsons/static/js/main.f711c73d.js",
+    "main.js": "/Proyecto-Simpsons/static/js/main.0f3818c2.js",
     "static/js/787.743eaff0.chunk.js": "/Proyecto-Simpsons/static/js/787.743eaff0.chunk.js",
     "static/media/sky-background.jpg": "/Proyecto-Simpsons/static/media/sky-background.40a634773131f78ca221.jpg",
     "static/media/maggie.png": "/Proyecto-Simpsons/static/media/maggie.b03312c2634f62e1b2eb.png",
@@ -15,11 +15,11 @@
     "static/media/bart.png": "/Proyecto-Simpsons/static/media/bart.cfa369b39b5dd6795d7e.png",
     "index.html": "/Proyecto-Simpsons/index.html",
     "main.2db8c97a.css.map": "/Proyecto-Simpsons/static/css/main.2db8c97a.css.map",
-    "main.f711c73d.js.map": "/Proyecto-Simpsons/static/js/main.f711c73d.js.map",
+    "main.0f3818c2.js.map": "/Proyecto-Simpsons/static/js/main.0f3818c2.js.map",
     "787.743eaff0.chunk.js.map": "/Proyecto-Simpsons/static/js/787.743eaff0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2db8c97a.css",
-    "static/js/main.f711c73d.js"
+    "static/js/main.0f3818c2.js"
   ]
 }
